@@ -64,7 +64,23 @@ def add_item():
     return render_template('Adding.html',col=None,collections=Collection.query.all(),
                            user_=current_user)
 
-@app.route('/add',methods=['post']) ##обавление товара
+@app.route('/add_file',methods=['post']) #добавление товаров из файла xlsx
+def add_file():
+    file=request.files['excel']
+    data=pd.DataFrame(file.filename)
+    for i in data.index:
+        one=data.iloc[0]
+        name=one['name']
+        price=one['price']
+        image=one['image']
+        descript=one['descr']
+        coll=one['collection']
+        db.session.add(Item(title=name,descr=descript,price=price,image=image,
+              collect=Collection.query.filter_by(trans=coll).first().id))
+    db.session.commit()
+    return redirect('/add_item')
+
+@app.route('/add',methods=['post']) #добавление товара
 def add():
     colls=[c.trans for c in Collection.query.all()]
     name=request.form['name']
