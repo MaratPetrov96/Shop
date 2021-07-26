@@ -76,7 +76,7 @@ def add_file():
         descript=one['descr']
         coll=one['collection']
         db.session.add(Item(title=name,descr=descript,price=price,image=image,
-              collect=Collection.query.filter_by(trans=coll).first().id))
+              collect=coll))
     db.session.commit()
     return redirect('/add_item')
 
@@ -90,7 +90,7 @@ def add():
     coll=request.form['collection']
     if coll in colls:
         data=Item(title=name,descr=descript,price=price,image=image,
-              collect=Collection.query.filter_by(trans=coll).first().id)
+              collect=coll)
         #else:
         #new=Collection()
         db.session.add(data)
