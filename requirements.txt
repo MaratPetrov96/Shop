@@ -41,13 +41,11 @@ joblib==1.0.1
 lamson==1.3.4
 Mako==1.1.3
 MarkupSafe==1.1.1
-moviepy==1.0.3
 ndg-httpsclient==0.5.1
 nltk==3.5
 numpy==1.19.4
 pandas==1.2.4
 passlib==1.7.4
-Pillow==8.0.1
 proglog==0.1.9
 psycopg2==2.9.1
 psycopg2-binary==2.9.1
