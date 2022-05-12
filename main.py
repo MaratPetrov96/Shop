@@ -98,6 +98,13 @@ def add():
     return render_template('Adding.html',col=None,collections=Collection.query.all(),
                            user_=current_user)
 
+@app.route('/delete/<int:item>',methods=['POST']) #удаление из корзины
+def delete_busket(item):
+    item = ItemInBusket.get(id=item)
+    db.session.delete(item)
+    db.session.commit()
+    return redirect('busket')
+
 @app.route('/login',methods=['GET', 'POST']) #авторизация
 def login():
     login_=request.form.get('login')
